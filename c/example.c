@@ -9,14 +9,20 @@ int main(void) {
   // Initialize the hasher.
   blake3_hasher hasher;
   blake3_hasher_init(&hasher);
-
+  printf("starting...\n");
+  const unsigned char key[7] = "energy"; 
   // Read input bytes from stdin.
   unsigned char buf[65536];
   while (1) {
-    ssize_t n = read(STDIN_FILENO, buf, sizeof(buf));
-    if (n > 0) {
-      blake3_hasher_update(&hasher, buf, n);
-    } else if (n == 0) {
+     printf("running...\n");
+    //ssize_t n = read(STDIN_FILENO, buf, sizeof(buf));
+    //printf("n %ld\n", n);
+    if (7 > 0) {
+      //blake3_hasher_update(&hasher, buf, n);
+      blake3_hasher_update(&hasher, key, 6);
+      printf("hashed...\n");
+      break;
+    } else if (0) {
       break; // end of file
     } else {
       fprintf(stderr, "read failed: %s\n", strerror(errno));
